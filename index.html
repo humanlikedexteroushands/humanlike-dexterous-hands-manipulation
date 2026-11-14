@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Keeps search engines from listing the page while the paper is under review. Delete this line after the decision. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Learning Human-Like Dexterous Hand Manipulation via Adversarial Motion Priors and Contact Guidance</title>
+<style>
+:root{--ink:#1c2430;--muted:#5b6573;--line:#d9dee5;--accent:#00367b;--wash:#f2f4f7}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:#fff;font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:56rem;margin:0 auto;padding:3rem 1.25rem 4rem}
+h1,h2,h3{font-family:Charter,"Iowan Old Style",Georgia,serif;line-height:1.2;margin:0}
+h1{font-size:clamp(1.7rem,4.2vw,2.5rem);font-weight:700;text-align:center}
+h2{font-size:1.5rem;margin:3rem 0 .9rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+h3{font-size:1.1rem;margin:2rem 0 .6rem}
+p{margin:.7rem 0;max-width:46rem}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.meta{text-align:center;color:var(--muted);margin-top:1rem}
+.meta p{margin:.2rem auto}
+.links{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:1.4rem 0 2rem}
+.links a{padding:.45rem 1.1rem;border:1px solid var(--accent);border-radius:999px;text-decoration:none;font-weight:600}
+.links a:hover{background:var(--accent);color:#fff}
+.media{position:relative;aspect-ratio:16/9;background:var(--wash);border:1px dashed #b8c0cc;border-radius:6px;overflow:hidden}
+.media video,.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--wash)}
+.media img{object-fit:contain}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:.5rem;color:var(--muted);font-size:.85rem}
+figure{margin:0}
+figcaption{font-size:.9rem;color:var(--muted);margin-top:.4rem}
+.grid{display:grid;gap:1rem}
+.c2{grid-template-columns:repeat(2,1fr)}
+.c3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:640px){.c2,.c3{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;max-width:46rem;margin:1rem 0;font-size:.95rem}
+th,td{padding:.5rem .7rem;text-align:left;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted)}
+td.best{font-weight:700;color:var(--accent)}
+footer{margin-top:4rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Learning Human-Like Dexterous Hand Manipulation via Adversarial Motion Priors and Contact Guidance</h1>
+  <div class="meta">
+    <p>Anonymous authors</p>
+    <p>Under review</p>
+  </div>
+  <nav class="links" aria-label="Project links">
+    <!-- TODO: put the anonymous manuscript at project-page/assets/paper.pdf (no names or affiliations inside the PDF) -->
+    <a href="assets/paper.pdf">Paper (PDF)</a>
+    <!-- TODO: set href to the main video once it is in assets/videos/ -->
+    <a href="#teaser">Video</a>
+  </nav>
+
+  <figure id="teaser">
+    <div class="media">
+      <video controls muted loop playsinline preload="metadata" src="assets/videos/teaser.mp4" onerror="this.remove()"></video>
+      <span class="ph">Teaser video placeholder: assets/videos/teaser.mp4</span>
+    </div>
+    <figcaption>Our policy manipulates objects with natural finger motion and human-like contact. The baseline succeeds at the task but with unnatural hand poses and only partial contact.</figcaption>
+  </figure>
+</header>
+
+<h2>Abstract</h2>
+<p>Human-like robot motion makes robots more natural and acceptable to people, but dexterous hands are hard to control: high-dimensional actions and complex contact make unnatural movements easy to see. Reinforcement learning (RL) achieves strong task performance, but policies trained only with task rewards often use strategies that succeed without moving like a human.</p>
+<p>We learn human-like dexterous manipulation from task-agnostic human motion data, with no task-specific demonstrations or hand references. We adapt adversarial motion priors to encourage human-like hand motion, and add a learned contact predictor that models human-like hand-object contact. Human evaluations and a comparison of contact patterns with human data show that the resulting behaviors move more like a human hand and make contact closer to human demonstrations.</p>
+
+<h2>Method</h2>
+<p>Human hand-object interaction sequences are retargeted to the robot hand. The retargeted data trains two components once: a contact predictor that estimates which fingertips should touch the object from its point cloud, and an adversarial motion prior that learns human hand-motion style. The policy is then trained with RL using a combined task, style, and contact reward.</p>
+<figure>
+  <div class="media">
+    <img src="assets/images/method.png" alt="Overview of the framework: dataset construction, contact predictor, and policy learning" onerror="this.remove()">
+    <span class="ph">Method overview figure placeholder: assets/images/method.png</span>
+  </div>
+  <figcaption>Framework overview: dataset construction, contact predictor, and policy learning.</figcaption>
+</figure>
+
+<h2>Results</h2>
+
+<h3>Simulation comparison</h3>
+<p>Our method produces natural finger configurations together with human-like contact, while the baselines show unnatural fingers or hovering contact.</p>
+<div class="grid c3">
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/sim_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/sim_rl.mp4</span></div><figcaption>RL</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/sim_ampc.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/sim_ampc.mp4</span></div><figcaption>AMP with contact indicators</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/sim_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/sim_ours.mp4</span></div><figcaption>Ours</figcaption></figure>
+</div>
+
+<h3>Real-robot deployment</h3>
+<p>We deploy the policies on a bimanual robot with dexterous hands. The RL baseline relies on finger configurations that work in simulation but transfer poorly; ours keeps natural finger coordination and contact.</p>
+<div class="grid c2">
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_mixer_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_mixer_rl.mp4</span></div><figcaption>Mixer: RL</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_mixer_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_mixer_ours.mp4</span></div><figcaption>Mixer: Ours</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_box_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_box_rl.mp4</span></div><figcaption>Box: RL</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_box_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_box_ours.mp4</span></div><figcaption>Box: Ours</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_microwave_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_microwave_rl.mp4</span></div><figcaption>Microwave: RL</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_microwave_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_microwave_ours.mp4</span></div><figcaption>Microwave: Ours</figcaption></figure>
+</div>
+
+<h3>A new task and new objects</h3>
+<p>On a lifting task with no target trajectory, using a foam brick and a banana that are not in the human data, RL produces a shallow contact pattern while ours forms an enclosing grasp with sustained multi-finger contact.</p>
+<div class="grid c2">
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_brick_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_brick_rl.mp4</span></div><figcaption>Brick: RL</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_brick_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_brick_ours.mp4</span></div><figcaption>Brick: Ours</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_banana_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_banana_rl.mp4</span></div><figcaption>Banana: RL</figcaption></figure>
+  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_banana_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_banana_ours.mp4</span></div><figcaption>Banana: Ours</figcaption></figure>
+</div>
+
+<h3>Human study</h3>
+<p>Twenty participants compared pairs of motion videos and answered four questions. The table shows the share of comparisons each method won.</p>
+<table>
+  <thead><tr><th scope="col">Question</th><th scope="col">RL</th><th scope="col">AMP with contact indicators</th><th scope="col">Ours</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Natural finger motion</th><td>0.18</td><td>0.60</td><td class="best">0.72</td></tr>
+    <tr><th scope="row">Appropriate, continuous contact</th><td>0.22</td><td>0.57</td><td class="best">0.71</td></tr>
+    <tr><th scope="row">More human-like overall</th><td>0.17</td><td>0.60</td><td class="best">0.73</td></tr>
+    <tr><th scope="row">Preferred</th><td>0.17</td><td>0.62</td><td class="best">0.71</td></tr>
+  </tbody>
+</table>
+
+<h2>Limitations</h2>
+<p>The contact predictor generalizes less well to unseen objects: its predictions match the human contact data less closely for objects outside the training data, and contact agreement with human data drops in that setting. Improving this is future work.</p>
+
+<footer>
+  Anonymous submission, under review. Names, affiliations, and citation details will be added after the review process.
+</footer>
+
+</main>
+</body>
+</html>
