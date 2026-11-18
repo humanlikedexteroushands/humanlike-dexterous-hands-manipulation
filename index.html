@@ -28,7 +28,7 @@ a{color:var(--accent)}
 .media img{object-fit:contain;background:var(--wash)}
 .r43 .media{aspect-ratio:4/3}
 figure{margin:0}
-figcaption{font-size:.9rem;color:var(--muted);margin-top:.4rem}
+figcaption{text-align:center;font-size:.9rem;color:var(--muted);margin-top:.4rem}
 .grid{display:grid;gap:1rem}
 .c2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:640px){.c2{grid-template-columns:1fr}}
@@ -91,11 +91,11 @@ tr.avg th{font-weight:600}
 </ol>
 
 <h2>Real-world results</h2>
-<p>We train policies in simulation and deploy them on a bimanual robot with dexterous hands, using teacher-student distillation and object pose estimated from four cameras. Ours is trained in the unseen setting, without demonstrations of the object shown.</p>
+<p>We train policies in simulation and deploy them on a bimanual robot with dexterous hands, using teacher-student distillation and object pose estimated from four cameras. Ours is trained in the unseen setting, without demonstrations of the manipulated object.</p>
 <div id="real"></div>
 
 <h2>Simulation results</h2>
-<p>We compare RL, AMP, AMP + contact, and ours in simulation. AMP + contact adds the contact state to the discriminator input. AMP, AMP + contact, and ours are trained in the unseen setting, without demonstrations of the object shown.</p>
+<p>We compare RL, AMP, AMP + contact, and ours in simulation. AMP + contact adds the contact state to the discriminator input. AMP, AMP + contact, and ours are trained in the unseen setting, without demonstrations of the manipulated object.</p>
 <div id="sim"></div>
 
 <h2>Human study</h2>
@@ -141,7 +141,7 @@ function tabs(id,items,render){
   show(0);
 }
 tabs('real',[['mixer','Mixer'],['box','Box'],['microwave','Microwave']],
-  ([k,n])=>`<div class="grid c2 r43">${V('real_'+k+'_rl',n+': RL')}${V('real_'+k+'_ours',n+': Ours')}</div>${SYNC}`);
+  ([k,n])=>`<div class="grid c2 r43">${V('real_'+k+'_rl','RL')}${V('real_'+k+'_ours','Ours')}</div>${SYNC}`);
 tabs('sim',[['box','Box'],['espresso','Espresso machine'],['ketchup','Ketchup'],['laptop','Laptop'],['microwave','Microwave'],['mixer','Mixer'],['notebook','Notebook'],['scissors','Scissors']],
   ([k,n])=>`<div class="grid c2">${V('sim_'+k+'_rl','RL')}${V('sim_'+k+'_amp','AMP')}${V('sim_'+k+'_ampc','AMP + contact')}${V('sim_'+k+'_ours','Ours')}</div>${SYNC}`);
 
