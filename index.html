@@ -111,7 +111,7 @@ tr.avg th{font-weight:600}
 <script>
 const $=id=>document.getElementById(id);
 const SYNC='<div class="sync"><button type="button" class="pp">Play</button><input type="range" min="0" max="1000" value="0" aria-label="Seek all videos"></div>';
-const V=(f,cap)=>`<figure><div class="media"><video class="sv" muted playsinline preload="metadata" src="assets/videos/${f}.mp4#t=0.1" onerror="this.remove()"></video></div><figcaption>${cap}</figcaption></figure>`;
+const V=(f,cap)=>`<figure><div class="media"><video class="sv" muted playsinline preload="auto" src="assets/videos/${f}.mp4#t=0.1" onerror="this.remove()"></video></div><figcaption>${cap}</figcaption></figure>`;
 function wire(panel){
   if(!panel.querySelector)return;
   const btn=panel.querySelector('.pp'),rng=panel.querySelector('input[type=range]');
@@ -121,9 +121,26 @@ function wire(panel){
   const dur=()=>Math.max(0,...vs().map(v=>v.duration||0));
   const now=()=>Math.max(0,...vs().map(v=>v.currentTime));
   const set=p=>{playing=p;btn.textContent=p?'Pause':'Play';};
-  const go=t=>vs().forEach(v=>{v.currentTime=Math.min(t,v.duration||t);if(playing&&t<(v.duration||Infinity)-.05)v.play().catch(()=>{});});
+  let tok=0;
+  const ready=v=>v.readyState>=3&&!v.seeking;
+  const live=v=>v.currentTime<(v.duration||Infinity)-.05;
+  // Start every video only once all of them have buffered, so they begin together.
+  const start=()=>{
+    const my=++tok;
+    vs().forEach(v=>v.pause());
+    const chk=()=>{
+      if(my!==tok||!playing)return;
+      if(vs().every(ready)){btn.textContent='Pause';vs().forEach(v=>{if(live(v))v.play().catch(()=>{});});}
+      else{btn.textContent='Loading...';setTimeout(chk,80);}
+    };
+    chk();
+  };
+  const go=t=>{
+    vs().forEach(v=>{v.currentTime=Math.min(t,v.duration||t);});
+    if(playing)start();
+  };
   const play=()=>{let t=now();if(t>=dur()-.05)t=0;set(true);go(t);};
-  const pause=()=>{set(false);vs().forEach(v=>v.pause());};
+  const pause=()=>{tok++;set(false);vs().forEach(v=>v.pause());};
   const toggle=()=>playing?pause():play();
   btn.onclick=toggle;
   rng.oninput=()=>go(rng.value/1000*dur());
@@ -131,6 +148,7 @@ function wire(panel){
     v.onclick=toggle;
     v.ontimeupdate=()=>{const d=dur();if(d)rng.value=Math.round(now()/d*1000);};
     v.onended=()=>{if(playing&&vs().every(x=>x.ended))play();};
+    v.onwaiting=()=>{if(playing&&!v.ended)start();};
   });
 }
 function tabs(id,items,render){
