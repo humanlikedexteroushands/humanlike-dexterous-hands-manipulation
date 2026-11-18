@@ -3,41 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Keeps search engines from listing the page while the paper is under review. Delete this line after the decision. -->
 <meta name="robots" content="noindex, nofollow">
 <title>Learning Human-Like Dexterous Hand Manipulation via Adversarial Motion Priors and Contact Guidance</title>
 <style>
 :root{--ink:#1c2430;--muted:#5b6573;--line:#d9dee5;--accent:#00367b;--wash:#f2f4f7}
 *{box-sizing:border-box}
 body{margin:0;color:var(--ink);background:#fff;font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:56rem;margin:0 auto;padding:3rem 1.25rem 4rem}
+main{max-width:64rem;margin:0 auto;padding:3rem 1.25rem 4rem}
 h1,h2,h3{font-family:Charter,"Iowan Old Style",Georgia,serif;line-height:1.2;margin:0}
 h1{font-size:clamp(1.7rem,4.2vw,2.5rem);font-weight:700;text-align:center}
 h2{font-size:1.5rem;margin:3rem 0 .9rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
-h3{font-size:1.1rem;margin:2rem 0 .6rem}
-p{margin:.7rem 0;max-width:46rem}
+h3{font-size:1.1rem;margin:1.8rem 0 .5rem}
+p{margin:.7rem 0}
+ol{margin:.7rem 0;padding-left:1.4rem}
+li{margin:.45rem 0}
 a{color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .meta{text-align:center;color:var(--muted);margin-top:1rem}
-.meta p{margin:.2rem auto}
 .links{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:1.4rem 0 2rem}
 .links a{padding:.45rem 1.1rem;border:1px solid var(--accent);border-radius:999px;text-decoration:none;font-weight:600}
 .links a:hover{background:var(--accent);color:#fff}
+.links .soon{padding:.45rem 1.1rem;border:1px dashed #b8c0cc;border-radius:999px;color:var(--muted);font-weight:600}
 .media{position:relative;aspect-ratio:16/9;background:var(--wash);border:1px dashed #b8c0cc;border-radius:6px;overflow:hidden}
-.media video,.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--wash)}
-.media img{object-fit:contain}
-.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:.5rem;color:var(--muted);font-size:.85rem}
+.media video,.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--wash)}
+.media img{object-fit:contain;background:var(--wash)}
+.r43 .media{aspect-ratio:4/3}
 figure{margin:0}
 figcaption{font-size:.9rem;color:var(--muted);margin-top:.4rem}
 .grid{display:grid;gap:1rem}
 .c2{grid-template-columns:repeat(2,1fr)}
-.c3{grid-template-columns:repeat(3,1fr)}
-@media (max-width:640px){.c2,.c3{grid-template-columns:1fr}}
-table{border-collapse:collapse;width:100%;max-width:46rem;margin:1rem 0;font-size:.95rem}
-th,td{padding:.5rem .7rem;text-align:left;border-bottom:1px solid var(--line)}
+@media (max-width:640px){.c2{grid-template-columns:1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0 1rem}
+.tabs button{font:inherit;font-size:.9rem;padding:.3rem .95rem;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;cursor:pointer}
+.tabs button:hover{border-color:var(--accent)}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scroll{overflow-x:auto}
+.sync{display:flex;align-items:center;gap:.9rem;margin:.9rem 0}
+.sync button{font:inherit;font-size:.9rem;font-weight:600;padding:.35rem 1.1rem;border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:999px;cursor:pointer;min-width:6.5rem}
+.sync button:hover{background:var(--accent);color:#fff}
+.sync input{flex:1;accent-color:var(--accent)}
+.media video.sv{cursor:pointer}
+table{border-collapse:collapse;width:100%;margin:.8rem 0;font-size:.92rem}
+th,td{padding:.4rem .6rem;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
 th{font-weight:600;color:var(--muted)}
-td.best{font-weight:700;color:var(--accent)}
-footer{margin-top:4rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+td.n,th.n{text-align:right}
+td.b{font-weight:700}
+thead th{white-space:normal;vertical-align:bottom;line-height:1.3}
+.u{background:linear-gradient(#e8eef8,#e8eef8) center/calc(100% - .5rem) 100% no-repeat}
+th.g{position:relative;border-bottom:0;text-align:center}
+th.g::after{content:"";position:absolute;left:.25rem;right:.25rem;bottom:0;height:1px;background:var(--muted)}
+thead th.u{color:var(--accent);font-weight:700}
+tr.avg td,tr.avg th{border-top:2px solid var(--line)}
+tr.avg th{font-weight:600}
+.note{font-size:.9rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -45,89 +63,99 @@ footer{margin-top:4rem;padding-top:1rem;border-top:1px solid var(--line);color:v
 
 <header>
   <h1>Learning Human-Like Dexterous Hand Manipulation via Adversarial Motion Priors and Contact Guidance</h1>
-  <div class="meta">
-    <p>Anonymous authors</p>
-    <p>Under review</p>
-  </div>
+  <p class="meta">Anonymous</p>
   <nav class="links" aria-label="Project links">
-    <!-- TODO: put the anonymous manuscript at project-page/assets/paper.pdf (no names or affiliations inside the PDF) -->
-    <a href="assets/paper.pdf">Paper (PDF)</a>
-    <!-- TODO: set href to the main video once it is in assets/videos/ -->
-    <a href="#teaser">Video</a>
+    <span class="soon">Paper (coming soon)</span>
+    <span class="soon">Code (coming soon)</span>
   </nav>
-
-  <figure id="teaser">
+  <figure id="teaser" class="wide">
     <div class="media">
-      <video controls muted loop playsinline preload="metadata" src="assets/videos/teaser.mp4" onerror="this.remove()"></video>
-      <span class="ph">Teaser video placeholder: assets/videos/teaser.mp4</span>
+      <video controls playsinline preload="metadata" src="assets/videos/teaser.mp4#t=0.1" onerror="this.remove()"></video>
     </div>
-    <figcaption>Our policy manipulates objects with natural finger motion and human-like contact. The baseline succeeds at the task but with unnatural hand poses and only partial contact.</figcaption>
   </figure>
 </header>
 
-<h2>Abstract</h2>
-<p>Human-like robot motion makes robots more natural and acceptable to people, but dexterous hands are hard to control: high-dimensional actions and complex contact make unnatural movements easy to see. Reinforcement learning (RL) achieves strong task performance, but policies trained only with task rewards often use strategies that succeed without moving like a human.</p>
-<p>We learn human-like dexterous manipulation from task-agnostic human motion data, with no task-specific demonstrations or hand references. We adapt adversarial motion priors to encourage human-like hand motion, and add a learned contact predictor that models human-like hand-object contact. Human evaluations and a comparison of contact patterns with human data show that the resulting behaviors move more like a human hand and make contact closer to human demonstrations.</p>
+<p style="margin-top:2rem">Human-like motion makes robots more natural and acceptable to people. In dexterous hand manipulation, high-dimensional control and complex contact make unnatural movements especially noticeable. Reinforcement learning has achieved strong task performance in dexterous hand manipulation, but policies trained only with task rewards often succeed without moving like a human. We aim to learn manipulation that not only completes the task but also moves like a human, using task-agnostic human motion data with no task-specific demonstrations or hand references. To do so, we adapt adversarial motion priors to encourage human-like hand motion, and add a learned contact predictor that models human-like hand-object contact. Experiments show that our method is more human-like in both motion and contact.</p>
 
 <h2>Method</h2>
-<p>Human hand-object interaction sequences are retargeted to the robot hand. The retargeted data trains two components once: a contact predictor that estimates which fingertips should touch the object from its point cloud, and an adversarial motion prior that learns human hand-motion style. The policy is then trained with RL using a combined task, style, and contact reward.</p>
 <figure>
   <div class="media">
-    <img src="assets/images/method.png" alt="Overview of the framework: dataset construction, contact predictor, and policy learning" onerror="this.remove()">
-    <span class="ph">Method overview figure placeholder: assets/images/method.png</span>
+    <img src="assets/images/method.png" alt="Framework overview: dataset construction, contact predictor, and policy learning" onerror="this.remove()">
   </div>
-  <figcaption>Framework overview: dataset construction, contact predictor, and policy learning.</figcaption>
 </figure>
+<p>In our proposed framework, there are three steps:</p>
+<ol>
+  <li><strong>Dataset construction.</strong> We retarget human hand-object motion data to the robot hand. The data can be reused for new tasks without collecting new demonstrations.</li>
+  <li><strong>Contact predictor.</strong> A motion style alone can leave fingers hovering above the object or touching it with the wrong part of the hand. So, from the retargeted data, we train a model that predicts which fingertips should touch an object. Its input is the object's point cloud in the wrist frame, so it sees the object's shape and where the object is relative to the wrist. In the next step, the prediction guides the policy toward human-like contact.</li>
+  <li><strong>Policy learning.</strong> We train the policy with reinforcement learning using three rewards: task success, human-like motion style from an adversarial motion prior, and human-like contact guided by the contact predictor. Since humans use their hands in a consistent style across tasks, we expect the learned style to transfer to new tasks without task-specific supervision.</li>
+</ol>
 
-<h2>Results</h2>
+<h2>Real-world results</h2>
+<p>We train policies in simulation and deploy them on a bimanual robot with dexterous hands, using teacher-student distillation and object pose estimated from four cameras. Ours is trained in the unseen setting, without demonstrations of the object shown.</p>
+<div id="real"></div>
 
-<h3>Simulation comparison</h3>
-<p>Our method produces natural finger configurations together with human-like contact, while the baselines show unnatural fingers or hovering contact.</p>
-<div class="grid c3">
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/sim_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/sim_rl.mp4</span></div><figcaption>RL</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/sim_ampc.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/sim_ampc.mp4</span></div><figcaption>AMP with contact indicators</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/sim_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/sim_ours.mp4</span></div><figcaption>Ours</figcaption></figure>
-</div>
+<h2>Simulation results</h2>
+<p>We compare RL, AMP, AMP + contact, and ours in simulation. AMP + contact adds the contact state to the discriminator input. AMP, AMP + contact, and ours are trained in the unseen setting, without demonstrations of the object shown.</p>
+<div id="sim"></div>
 
-<h3>Real-robot deployment</h3>
-<p>We deploy the policies on a bimanual robot with dexterous hands. The RL baseline relies on finger configurations that work in simulation but transfer poorly; ours keeps natural finger coordination and contact.</p>
-<div class="grid c2">
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_mixer_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_mixer_rl.mp4</span></div><figcaption>Mixer: RL</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_mixer_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_mixer_ours.mp4</span></div><figcaption>Mixer: Ours</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_box_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_box_rl.mp4</span></div><figcaption>Box: RL</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_box_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_box_ours.mp4</span></div><figcaption>Box: Ours</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_microwave_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_microwave_rl.mp4</span></div><figcaption>Microwave: RL</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/real_microwave_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/real_microwave_ours.mp4</span></div><figcaption>Microwave: Ours</figcaption></figure>
-</div>
+<h2>Human study</h2>
+<p>To know whether people see our method's motion as more human-like, and whether they prefer it over the baselines, we asked twenty participants to compare pairs of motion videos from the unseen setting and answer four questions about finger motion, contact, overall human-likeness, and preference. The values in the table are win rates: each method's total number of wins divided by its total number of comparisons, pooled over all opponents. We can see that our method wins the most comparisons on all four questions. It is significantly better than RL on all four, and significantly better than AMP + contact on finger motion, contact, and overall human-likeness (p &lt; 0.05).</p>
+<div class="scroll"><table id="wr"></table></div>
+<div class="scroll"><table id="pv"></table></div>
 
-<h3>A new task and new objects</h3>
-<p>On a lifting task with no target trajectory, using a foam brick and a banana that are not in the human data, RL produces a shallow contact pattern while ours forms an enclosing grasp with sustained multi-finger contact.</p>
-<div class="grid c2">
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_brick_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_brick_rl.mp4</span></div><figcaption>Brick: RL</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_brick_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_brick_ours.mp4</span></div><figcaption>Brick: Ours</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_banana_rl.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_banana_rl.mp4</span></div><figcaption>Banana: RL</figcaption></figure>
-  <figure><div class="media"><video controls muted loop playsinline preload="metadata" src="assets/videos/lift_banana_ours.mp4" onerror="this.remove()"></video><span class="ph">assets/videos/lift_banana_ours.mp4</span></div><figcaption>Banana: Ours</figcaption></figure>
-</div>
-
-<h3>Human study</h3>
-<p>Twenty participants compared pairs of motion videos and answered four questions. The table shows the share of comparisons each method won.</p>
-<table>
-  <thead><tr><th scope="col">Question</th><th scope="col">RL</th><th scope="col">AMP with contact indicators</th><th scope="col">Ours</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">Natural finger motion</th><td>0.18</td><td>0.60</td><td class="best">0.72</td></tr>
-    <tr><th scope="row">Appropriate, continuous contact</th><td>0.22</td><td>0.57</td><td class="best">0.71</td></tr>
-    <tr><th scope="row">More human-like overall</th><td>0.17</td><td>0.60</td><td class="best">0.73</td></tr>
-    <tr><th scope="row">Preferred</th><td>0.17</td><td>0.62</td><td class="best">0.71</td></tr>
-  </tbody>
-</table>
-
-<h2>Limitations</h2>
-<p>The contact predictor generalizes less well to unseen objects: its predictions match the human contact data less closely for objects outside the training data, and contact agreement with human data drops in that setting. Improving this is future work.</p>
-
-<footer>
-  Anonymous submission, under review. Names, affiliations, and citation details will be added after the review process.
-</footer>
+<h2>Task completion and contact</h2>
+<p>To know whether making the hand more human-like costs task performance, and whether its fingertip contact is closer to human contact data, we measure two things. Completion rate (CR) is the fraction of the target object trajectory completed before the pose error exceeds a threshold. Contact IoU (CI) measures how closely fingertip contact matches human contact data. Higher is better for both. In the seen setting, the demonstrations include the manipulated object; in the unseen setting, they do not. We can see that our method keeps task completion similar to the baselines and reaches the highest contact IoU.</p>
+<div class="scroll"><table id="crci"></table></div>
 
 </main>
+<script>
+const $=id=>document.getElementById(id);
+const SYNC='<div class="sync"><button type="button" class="pp">Play</button><input type="range" min="0" max="1000" value="0" aria-label="Seek all videos"></div>';
+const V=(f,cap)=>`<figure><div class="media"><video class="sv" muted playsinline preload="metadata" src="assets/videos/${f}.mp4#t=0.1" onerror="this.remove()"></video></div><figcaption>${cap}</figcaption></figure>`;
+function wire(panel){
+  if(!panel.querySelector)return;
+  const btn=panel.querySelector('.pp'),rng=panel.querySelector('input[type=range]');
+  if(!btn||!rng)return;
+  let playing=false;
+  const vs=()=>[...panel.querySelectorAll('video')];
+  const dur=()=>Math.max(0,...vs().map(v=>v.duration||0));
+  const now=()=>Math.max(0,...vs().map(v=>v.currentTime));
+  const set=p=>{playing=p;btn.textContent=p?'Pause':'Play';};
+  const go=t=>vs().forEach(v=>{v.currentTime=Math.min(t,v.duration||t);if(playing&&t<(v.duration||Infinity)-.05)v.play().catch(()=>{});});
+  const play=()=>{let t=now();if(t>=dur()-.05)t=0;set(true);go(t);};
+  const pause=()=>{set(false);vs().forEach(v=>v.pause());};
+  const toggle=()=>playing?pause():play();
+  btn.onclick=toggle;
+  rng.oninput=()=>go(rng.value/1000*dur());
+  vs().forEach(v=>{
+    v.onclick=toggle;
+    v.ontimeupdate=()=>{const d=dur();if(d)rng.value=Math.round(now()/d*1000);};
+    v.onended=()=>{if(playing&&vs().every(x=>x.ended))play();};
+  });
+}
+function tabs(id,items,render){
+  const root=$(id),bar=document.createElement('div'),panel=document.createElement('div');
+  bar.className='tabs';bar.setAttribute('role','tablist');root.append(bar,panel);
+  const show=i=>{[...bar.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));panel.innerHTML=render(items[i]);wire(panel);};
+  items.forEach((it,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=it[1];b.onclick=()=>show(i);bar.append(b);});
+  show(0);
+}
+tabs('real',[['mixer','Mixer'],['box','Box'],['microwave','Microwave']],
+  ([k,n])=>`<div class="grid c2 r43">${V('real_'+k+'_rl',n+': RL')}${V('real_'+k+'_ours',n+': Ours')}</div>${SYNC}`);
+tabs('sim',[['box','Box'],['espresso','Espresso machine'],['ketchup','Ketchup'],['laptop','Laptop'],['microwave','Microwave'],['mixer','Mixer'],['notebook','Notebook'],['scissors','Scissors']],
+  ([k,n])=>`<div class="grid c2">${V('sim_'+k+'_rl','RL')}${V('sim_'+k+'_amp','AMP')}${V('sim_'+k+'_ampc','AMP + contact')}${V('sim_'+k+'_ours','Ours')}</div>${SYNC}`);
+
+const T=(id,head,rows)=>{$(id).innerHTML=`<thead>${head}</thead><tbody>${rows}</tbody>`;};
+T('wr','<tr><th>Question</th><th class="n">RL</th><th class="n">AMP +<br>contact</th><th class="n u">Ours</th></tr>',
+ [['Q1: Natural finger motion',.18,.60,.72],['Q2: Appropriate, continuous contact',.22,.57,.71],['Q3: More human-like overall',.17,.60,.73],['Q4: Preferred',.17,.62,.71]]
+ .map(r=>{const m=Math.max(r[1],r[2],r[3]);return `<tr><th scope="row">${r[0]}</th>${r.slice(1).map((x,i)=>`<td class="n${x===m?' b':''}${i===2?' u':''}">${x.toFixed(2)}</td>`).join('')}</tr>`;}).join(''));
+T('pv','<tr><th>p-value</th><th class="n">Q1</th><th class="n">Q2</th><th class="n">Q3</th><th class="n">Q4</th></tr>',
+ [['AMP + contact vs. RL','&lt; 0.001','&lt; 0.001','&lt; 0.001','&lt; 0.001'],['Ours vs. RL','&lt; 0.001','&lt; 0.001','&lt; 0.001','&lt; 0.001'],['Ours vs. AMP + contact','0.0128','0.0063','0.0128','0.0764']]
+ .map(r=>`<tr><th scope="row">${r[0]}</th>${r.slice(1).map(x=>`<td class="n">${x}</td>`).join('')}</tr>`).join(''));
+const D=[['Box',[.92,1,1,.87,.77,1,1],[.27,.27,.46,.53,.26,.49,.54]],['Espresso machine',[.92,1,.70,.84,1,.92,1],[.24,.24,.40,.53,.26,.36,.42]],['Ketchup',[.29,.29,.29,.29,.29,.29,.29],[.26,.28,.32,.50,.27,.36,.38]],['Laptop',[.65,.64,.64,.83,.64,.64,.83],[.24,.25,.36,.53,.20,.37,.43]],['Microwave',[1,1,1,1,1,1,1],[.28,.29,.57,.75,.26,.58,.64]],['Mixer',[1,1,1,1,1,.99,1],[.20,.26,.49,.66,.23,.45,.55]],['Notebook',[.30,.30,.30,.30,.30,.30,.30],[.31,.31,.47,.61,.33,.46,.52]],['Scissors',[1,1,1,1,1,1,1],[.44,.44,.53,.64,.42,.46,.57]],['Average',[.76,.78,.74,.77,.75,.77,.80],[.28,.29,.45,.59,.28,.44,.51]]];
+const row=(a,f)=>{const ms=Math.max(a[0],a[1],a[2],a[3]),mu=Math.max(a[0],a[4],a[5],a[6]);return a.map((x,i)=>{const b=i===0?(x===ms||x===mu):i<=3?x===ms:x===mu;return `<td class="n${b?' b':''}${i===3||i===6?' u':''}">${f(x)}</td>`;}).join('');};
+T('crci','<tr><th rowspan="2">Object</th><th rowspan="2">Metric</th><th class="n" rowspan="2">RL</th><th class="g" colspan="3">Seen</th><th class="g" colspan="3">Unseen</th></tr><tr><th class="n">AMP</th><th class="n">AMP +<br>contact</th><th class="n u">Ours</th><th class="n">AMP</th><th class="n">AMP +<br>contact</th><th class="n u">Ours</th></tr>',
+ D.map(([n,cr,ci])=>{const c=n==='Average'?' class="avg"':'';return `<tr${c}><th scope="row" rowspan="2">${n}</th><td>CR</td>${row(cr,x=>x.toFixed(2))}</tr><tr><td>CI</td>${row(ci,x=>x.toFixed(2))}</tr>`;}).join(''));
+</script>
 </body>
 </html>
