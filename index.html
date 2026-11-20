@@ -90,6 +90,16 @@ tr.avg th{font-weight:600}
   <li><strong>Policy learning.</strong> We train the policy with reinforcement learning using three rewards: task success, human-like motion style from an adversarial motion prior, and human-like contact guided by the contact predictor. Since humans use their hands in a consistent style across tasks, we expect the learned style to transfer to new tasks without task-specific supervision.</li>
 </ol>
 
+<div id="hw">
+<h2>Hardware setup</h2>
+<figure>
+  <div class="media">
+    <img src="assets/images/hardware.png" alt="Overall hardware setup: bimanual robot with dexterous hands and four cameras" onerror="this.remove()">
+  </div>
+</figure>
+<p>Our real-world setup is a bimanual robot with two YAM Ultra arms, each mounted with an Inspire hand, and four cameras that estimate the object pose.</p>
+</div>
+
 <h2>Real-world results</h2>
 <p>We train policies in simulation and deploy them on a bimanual robot with dexterous hands, using teacher-student distillation and object pose estimated from four cameras. Ours is trained in the unseen setting, without demonstrations of the manipulated object.</p>
 <div id="real"></div>
